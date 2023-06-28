@@ -1,4 +1,5 @@
 import json
+import os
 from typing import Optional
 
 import openai
@@ -30,14 +31,6 @@ class StupidJokeTool(BaseTool):
     ) -> str:
         """Use the tool asynchronously."""
         raise NotImplementedError("joke tool does not support async")
-
-
-def get_pizza_info(pizza_name: str):
-    pizza_info = {
-        "name": pizza_name,
-        "price": "10.99",
-    }
-    return json.dumps(pizza_info)
 
 
 llm = ChatOpenAI(model="gpt-3.5-turbo-0613")
