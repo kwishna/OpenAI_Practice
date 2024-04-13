@@ -1,9 +1,31 @@
 import time
 
-import openai
+import os
 
-# gets API Key from environment variable OPENAI_API_KEY
-client = openai.OpenAI()
+from dotenv import load_dotenv
+
+load_dotenv()
+
+"""
+API DOC - https://github.com/openai/openai-python/blob/main/api.md
+
+"""
+
+from openai import OpenAI
+
+client = OpenAI(
+    api_key=os.environ.get("OPENAI_API_KEY")
+)
+
+'''
+- Assistants can call OpenAI’s models with specific instructions to tune their personality and capabilities.
+- Assistants can access multiple tools in parallel. These can be both OpenAI-hosted tools:
+    — like Code interpreter and Knowledge retrieval — or tools you build / host (via Function calling).
+- Assistants can access persistent Threads. Threads simplify AI application development by storing message history and truncating it
+  when the conversation gets too long for the model’s context length. You create a Thread once, and simply append Messages to it as your users reply.
+- Assistants can access Files in several formats — either as part of their creation or as part of Threads between Assistants and users.
+  When using tools, Assistants can also create files (e.g., images, spreadsheets, etc) and cite files they reference in the Messages they create.
+'''
 
 assistant = client.beta.assistants.create(
     name="Math Tutor",

@@ -1,7 +1,19 @@
-import openai
+import os
 
-# will default to `os.environ['OPENAI_API_KEY']` if not explicitly set
-openai.api_key = "..."
+from dotenv import load_dotenv
+
+load_dotenv()
+
+"""
+API DOC - https://github.com/openai/openai-python/blob/main/api.md
+
+"""
+
+from openai import OpenAI
+
+client = OpenAI(
+    api_key=os.environ.get("OPENAI_API_KEY")
+)
 
 # all client options can be configured just like the `OpenAI` instantiation counterpart
 openai.base_url = "https://..."

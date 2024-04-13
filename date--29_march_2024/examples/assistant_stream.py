@@ -1,7 +1,19 @@
-import openai
+import os
 
-# gets API Key from environment variable OPENAI_API_KEY
-client = openai.OpenAI()
+from dotenv import load_dotenv
+
+load_dotenv()
+
+"""
+API DOC - https://github.com/openai/openai-python/blob/main/api.md
+
+"""
+
+from openai import OpenAI
+
+client = OpenAI(
+    api_key=os.environ.get("OPENAI_API_KEY")
+)
 
 assistant = client.beta.assistants.create(
     name="Math Tutor",
